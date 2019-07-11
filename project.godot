@@ -18,6 +18,14 @@ _global_script_class_icons={
 config/name="Godot Library Helper"
 config/icon="res://icon.png"
 
+[autoload]
+
+AudioManager="*res://Lib/Audio/AudioManager.tscn"
+
+[display]
+
+window/size/width=800
+
 [rendering]
 
 vram_compression/import_etc=true
