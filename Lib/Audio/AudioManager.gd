@@ -1,10 +1,10 @@
 #AudioManager
 #Code by: First
 
-# User_AudioManager is a singleton audio player that plays
+# AudioManager is a singleton audio player that plays
 # background music and sound effects. The main advantage
 # is to provide an easier way to play audio from anywhere
-# without having to attach sound effect to a node. Ex: An
+# without having to attach a sound effect to a node. Ex: An
 # enemy carrying sound effect that plays when dies. That
 # would become frustrated to handle by keeping enemy stay
 # alive until the sound finishes playing to prevent sound

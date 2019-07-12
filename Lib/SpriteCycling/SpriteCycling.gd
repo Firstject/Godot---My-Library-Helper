@@ -1,12 +1,23 @@
 #Sprite Cycling
 #Code by: First
 
-#Sprite Cycling turns all children within parent node
+#Sprite Cycling turns all children within the parent node
 #to draw sprites in forward order one frame and
-#backward order the next when any of two sprites
-#are overlapping.
+#backward order the next when two sprites are
+#overlapping each other.
 
-# USAGE: Can be used anywhere. Place it within parent node.
+# USE CASES:
+#   There are two items with similiar image size
+#   that are overlapping at the same spot, which
+#   makes either item A or B can barely be seen.
+#   How about if we swap both item A and B
+#   cycling back and forth so some part of their
+#   sprites can be seen? Wouldn't be that great
+#   to not confusing player with item A is
+#   being hidden by item B? This is called
+#   "Faking Transparency".
+
+# USAGE: Can be used anywhere. Place it within the parent node.
 # Example:
 #
 # Root
