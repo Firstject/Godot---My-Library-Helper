@@ -20,9 +20,6 @@ Located at **/ExampleUsage** folder. Each sub-folders contain scene files and ex
 
 **SineBehavior2D** - The Sine behavior can adjust an object's properties (like its position, or angle) back and forth according to an oscillating sine wave. This can be used to create interesting visual effects..  
 
-----
-Coming soon: PlatformBehavior2D
-
 **PlatformBehavior2D** - The Platform behavior applies the parent node of KinematicBody2d a side-view "jump and run" style movement. By default the Platform movement is controlled by the <span style='color:#979797;'>ui_left</span> and <span style='color:#979797;'>ui_right</span> keys and <span style='color:#979797;'>ui_up</span> to jump. To set up custom or automatic controls, see its library's script.
 
 _More coming soon!_
