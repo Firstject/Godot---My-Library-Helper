@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://Lib/BulletBehavior/BulletBehavior.gd"
 }, {
 "base": "Node",
+"class": "User_SineBehavior2D",
+"language": "GDScript",
+"path": "res://Lib/SineBehavior2D/SineBehavior2D.gd"
+}, {
+"base": "Node",
 "class": "User_SpriteCycling2D",
 "language": "GDScript",
 "path": "res://Lib/SpriteCycling/SpriteCycling.gd"
 } ]
 _global_script_class_icons={
 "User_BulletBehavior2D": "",
+"User_SineBehavior2D": "",
 "User_SpriteCycling2D": ""
 }
 
