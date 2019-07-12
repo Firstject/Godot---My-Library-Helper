@@ -23,7 +23,7 @@
 
 #tool
 extends Node
-class_name Iterable
+class_name User_SpriteCycling2D
 
 export(bool) var enabled = true
 export(Array, int) var frames_per_iterate = [0] #Array length should be power of n. e.g. 1, 2, 4, or 8, ..

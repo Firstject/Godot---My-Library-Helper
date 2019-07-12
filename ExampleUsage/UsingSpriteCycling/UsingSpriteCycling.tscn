@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Lib/SpriteCycling/SpriteCycling.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "New Anim"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 444.316, 305.933 ), Vector2( 629.329, 355.571 ), Vector2( 444.316, 305.933 ) ]
+}
 
 [node name="UsingSpriteCycling" type="Node"]
 
@@ -26,6 +43,10 @@ frames_per_iterate = [ 1, 0 ]
 position = Vector2( 444.316, 305.933 )
 scale = Vector2( 1.92106, 1.92106 )
 texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2/Sprite"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 1 )
 
 [node name="Sprite2" type="Sprite" parent="Node2"]
 position = Vector2( 531.146, 315.219 )

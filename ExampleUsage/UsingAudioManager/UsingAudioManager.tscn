@@ -29,7 +29,7 @@ custom_constants/separation = 24
 [node name="Label7" type="Label" parent="Explainations/MarginContainer/VBoxContainer"]
 margin_right = 768.0
 margin_bottom = 82.0
-text = "  AudioManager information:
+text = "  User_AudioManager information:
 AudioManager is a singleton audio player that plays background music and sound effects. The main advantage is to provide an easier way to play audio from anywhere without having to attach sound effect to a node. Ex: An enemy carrying sound effect that plays when dies. That would become frustrated to handle by keeping enemy stay alive until the sound finishes playing to prevent sound effect getting killed."
 autowrap = true
 
@@ -44,7 +44,7 @@ autowrap = true
 margin_top = 144.0
 margin_right = 768.0
 margin_bottom = 164.0
-text = "AudioManager.play_bgm()"
+text = "User_AudioManager.play_bgm()"
 align = 0
 
 [node name="Label3" type="Label" parent="Explainations/MarginContainer/VBoxContainer"]
@@ -65,7 +65,7 @@ autowrap = true
 margin_top = 281.0
 margin_right = 768.0
 margin_bottom = 301.0
-text = "AudioManager.stop_bgm()"
+text = "User_AudioManager.stop_bgm()"
 align = 0
 
 [node name="HSeparator" type="HSeparator" parent="Explainations/MarginContainer/VBoxContainer"]
@@ -84,7 +84,7 @@ autowrap = true
 margin_top = 391.0
 margin_right = 768.0
 margin_bottom = 411.0
-text = "AudioManager.sfx_example.play()"
+text = "User_AudioManager.sfx_example.play()"
 align = 0
 
 [node name="Label6" type="Label" parent="Explainations/MarginContainer/VBoxContainer"]

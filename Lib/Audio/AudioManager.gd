@@ -1,7 +1,7 @@
 #AudioManager
 #Code by: First
 
-# AudioManager is a singleton audio player that plays
+# User_AudioManager is a singleton audio player that plays
 # background music and sound effects. The main advantage
 # is to provide an easier way to play audio from anywhere
 # without having to attach sound effect to a node. Ex: An
@@ -15,7 +15,7 @@
 
  ### USAGE ###
 # To add a new sound effect, add a child node 'AudioStreamPlayer'
-# and place it under node path: /AudioManager/SFX/  
+# and place it anywhere you like.
 # Once added, load a sound file (*.wav) to a property of
 # 'Stream'.
 # After a sound file is loaded, add a new variable:
@@ -23,35 +23,38 @@
 #            named 'Sfx_Explosion' and loaded a file named
 #            'explosion.wav', you might want to add
 #            variable in this script to make it appear
-#            when using auto-completion from AudioManager.
+#            when using auto-completion from User_AudioManager.
 #            Variable should follow the pattern:
 #            onready var sfx_explosion : AudioStreamPlayer = $SFX/Sfx_Explosion
-# After variable is added, you can now call AudioManager
+# After variable is added, you can now call User_AudioManager
 # follow by name of a sound effect. Here's an example how
 # to use from other node:
 #----------------------------------------
 # func _ready():
-#     AudioManager.sfx_explosion.play()
+#     User_AudioManager.sfx_explosion.play()
 #----------------------------------------
 # Don't worry. play() function will automatically appear
 # as auto-completion after you've typed the variable name.
 #
 #
-# To play a background music, call AudioManager and
-# play_bgn function. Ex:
+# To play a background music, call User_AudioManager
+# and play_bgn function. Ex:
 #
-#    AudioManager.play_bgm(bgm)
+#    User_AudioManager.play_bgm(bgm)
 #
 # NOTE: bgm must be object of AudioStreamOGGVorbis.
 # There's no need to add Background music node here.
 # The file can be loaded and sent into here directly.
 
 # This is Auto-loaded scene and script file. Please add
-# the scene file of AudioManager as AutoLoad in project
-# setting.
+# the scene file of User_AudioManager as AutoLoad in
+# the project setting.
+# When added, please rename 'AudioManager' class name
+# to 'User_AudioManager' to avoid confusion with
+# built-in classes.
 
 # PROs:
-# - Can be called directly as AudioManager.sfx_yoursfxname
+# - Can be called directly as User_AudioManager.sfx_yoursfxname
 #   without having to add a AudioStreamPlayer node or
 #   AudioStreamPlayer2D or AudioStreamPlayer3D anywhere.
 # - Sound file is played here without getting process
@@ -68,7 +71,7 @@
 #   This ensures that the script will work when called
 #   and no error will occured.
 # CONs:
-# - Takes more time to setup sound on AudioManager. This
+# - Takes more time to setup sound on User_AudioManager. This
 #   includes: Creating node > Assign a sound file > and
 #   creating a variable to make it work. 3 steps trouble
 #   at the cost making it easier to play an audio here.
@@ -77,7 +80,7 @@
 # - There's no other easier way to restart current bgm
 #   while it's being played unless you call stop_bgm()
 #   and then play_bgm() again.
-# - Calling AudioManager.sfx_yoursfx.stop() while
+# - Calling User_AudioManager.sfx_yoursfx.stop() while
 #   it is being stopped can crashes the game and
 #   cause Socket Error: 10054. It's best avoid using
 #   stop() on sound effects.

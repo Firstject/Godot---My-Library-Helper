@@ -93,7 +93,7 @@ tracks/0/keys = {
 "values": [ -6.0, 0.0 ]
 }
 
-[node name="AudioManager" type="Node"]
+[node name="User_AudioManager" type="Node"]
 pause_mode = 2
 script = ExtResource( 1 )
 

@@ -15,10 +15,10 @@
 
 extends Node
 
-class_name BulletBehavior
+class_name User_BulletBehavior2D
 
 signal distance_travelled_reached
-signal stopped_moving
+signal stopped_moving 
 
 enum PROCESS_TYPE {
 	IDLE,
