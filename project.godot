@@ -39,6 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot Library Helper"
+run/main_scene="res://ExampleUsage/UsingPlatformBehavior2D/UsingPlatformBehavior2D.tscn"
 config/icon="res://icon.png"
 
 [autoload]

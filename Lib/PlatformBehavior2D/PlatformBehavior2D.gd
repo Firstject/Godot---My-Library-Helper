@@ -117,7 +117,7 @@ export(bool) var CONTROL_ENABLE = true
 #Input Actions
 export(String) var DEFAULT_CONTROL_LEFT = 'ui_left'
 export(String) var DEFAULT_CONTROL_RIGHT = 'ui_right'
-export(String) var DEFAULT_CONTROL_JUMP = 'ui_jump'
+export(String) var DEFAULT_CONTROL_JUMP = 'ui_up'
 
 onready var parent : Node = get_parent()
 
