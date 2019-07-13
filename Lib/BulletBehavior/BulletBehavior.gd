@@ -66,7 +66,8 @@ export (float) var gravity = 0
 export (float, 0, 9000, 0.1) var max_fall_speed = 900
 
 #Angle in degrees.
-#0 = Right, 180 = Down, 270 = Left, 360 = Up
+#0 = Right, 90 = Down, 180 = Left, 270 = Up
+#0 = Right, -90 = Up, -180 = Left, -270 = Down
 export (float) var angle_in_degrees = 0.0
 
 #If true, the speed will never go below zero.
