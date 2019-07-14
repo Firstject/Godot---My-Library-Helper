@@ -22,4 +22,6 @@ Located at **/ExampleUsage** folder. Each sub-folders contain scene files and ex
 
 **🏃‍PlatformBehavior2D** - The Platform behavior applies the parent node of KinematicBody2d a side-view "jump and run" style movement. By default the Platform movement is controlled by the <span style='color:#979797;'>ui_left</span> and <span style='color:#979797;'>ui_right</span> keys and <span style='color:#979797;'>ui_up</span> to jump. To set up custom or automatic controls, see its library's script.
 
+**❌AutoQueueFree** - Automatically take action when activated or as soon as the scene tree is entered. The main use of AutoQueueFree is to remove parent node as soon as the scene is entered. Useful if you're working on visual texts or objects that shows only in the editor and you do not wish it to be appeared in release builds. Also supports signal that connects to this node to start activation (usage is described in lib script).
+
 _More coming soon!_
