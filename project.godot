@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "User_AutoQueueFree",
+"language": "GDScript",
+"path": "res://Lib/AutoQueueFree/AutoQueueFree.gd"
+}, {
+"base": "Node",
 "class": "User_BulletBehavior2D",
 "language": "GDScript",
 "path": "res://Lib/BulletBehavior/BulletBehavior.gd"
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://Lib/SpriteCycling/SpriteCycling.gd"
 } ]
 _global_script_class_icons={
+"User_AutoQueueFree": "",
 "User_BulletBehavior2D": "",
 "User_PlatformBehavior2D": "",
 "User_SineBehavior2D": "",
