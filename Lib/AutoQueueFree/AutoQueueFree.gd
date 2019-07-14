@@ -3,7 +3,7 @@
 
 #This node automatically take action when activated
 #or as soon as the scene tree is entered.
-#The main use of AutoQueueFree is it tries to
+#The main use of AutoQueueFree is to
 #remove parent node as soon as the scene is entered.
 #Useful if you're working on visual texts or objects that
 #shows only in the editor and you do not wish it to be
