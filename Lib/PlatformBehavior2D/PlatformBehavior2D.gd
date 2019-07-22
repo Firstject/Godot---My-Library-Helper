@@ -54,6 +54,13 @@ signal move_and_collided(kinematic_collision)
 #just landed.
 signal landed
 
+#Emits when the parent node just jumped.
+signal jumped
+
+#Emits when the parent node just jumped, but
+#only emits when jump key is pressed.
+signal jumped_by_keypress
+
 #Emits when parent node of KinematicBody2D has
 #just hit ceiling.
 signal hit_ceiling
@@ -247,6 +254,12 @@ func jump_start(var check_condition = true) -> void:
 	if check_condition:
 		if !on_floor:
 			return
+	
+	emit_signal("jumped")
+	#Emit signal that the jump is done by keypress.
+	if Input.is_action_pressed(DEFAULT_CONTROL_JUMP) && CONTROL_ENABLE:
+		emit_signal("jumped_by_keypress")
+	
 	velocity.y = -JUMP_SPEED
 
 #Check if this node will work. Return false if not.
