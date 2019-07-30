@@ -13,6 +13,7 @@
 # This will work on any parent node having 'position' property.
 # Place it under parent node and start configuring.
 
+tool
 extends Node
 
 class_name User_BulletBehavior2D
@@ -86,16 +87,31 @@ var current_distance_traveled : float = 0
 var vec_angle : Vector2
 var velocity : Vector2
 
+func _get_configuration_warning() -> String:
+	var warning : String
+	
+	if not "position" in get_parent():
+		warning += "This will work only on parent node having 'position' property. "
+		warning += "Consider placing it on Node2D or Control as parent node."
+	
+	return warning
+
 func _ready() -> void:
 	var _parent = get_parent()
 	_init_position = _parent.get_position()
 
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint(): #We want this to works only in-game.
+		return
+	
 	if process_mode == PROCESS_TYPE.IDLE:
 		_do_process(delta)
 		_check_and_emit_signals()
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint(): #We want this to works only in-game.
+		return
+	
 	if process_mode == PROCESS_TYPE.PHYSICS:
 		_do_process(delta)
 		_check_and_emit_signals()     

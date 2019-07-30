@@ -39,6 +39,7 @@
 # - The script is currently very complicated to 
 #   understand if you plan to improve it.
 
+tool
 extends Node
 
 class_name User_PlatformBehavior2D
@@ -147,9 +148,14 @@ var on_wall = false
 var jump = false #Init... once
 var move_direction : int #-1 = moving left, 1 = moving right, 0 = still.
 
-func _ready():
-	if !is_validate():
-		return
+func _get_configuration_warning() -> String:
+	var warning : String
+	
+	if not get_parent() is KinematicBody2D:
+		warning += "This node only works with a KinematicBody2D as parent node. "
+		warning += "Please only use it as a child of KinematicBody2D."
+	
+	return warning
 
 func _physics_process(delta):
 	#Won't work if parent node is not KinematicBody2D.
@@ -264,19 +270,5 @@ func jump_start(var check_condition = true) -> void:
 
 #Check if this node will work. Return false if not.
 #An optional parameter can be passed to print for specific errors.
-func is_validate(var print_errors : bool = true) -> bool:
-	var is_all_valid = true
-	
-	if !parent is KinematicBody2D:
-		if print_errors:
-			printerr(
-				str(
-					self.name,
-					": parent node of ",
-					parent,
-					" is not a KinematicBody2D. So this node will neither work nor have effects." 
-				)
-			)
-		is_all_valid = false
-	
-	return is_all_valid
+func is_validate() -> bool:
+	return parent is KinematicBody2D
