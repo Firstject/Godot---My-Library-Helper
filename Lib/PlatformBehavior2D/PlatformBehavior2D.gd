@@ -158,6 +158,9 @@ func _get_configuration_warning() -> String:
 	return warning
 
 func _physics_process(delta):
+	if Engine.is_editor_hint(): #We want this to works only in-game.
+		return
+	
 	#Won't work if parent node is not KinematicBody2D.
 	if !is_validate():
 		return
