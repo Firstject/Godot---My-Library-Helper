@@ -42,7 +42,7 @@
 tool
 extends Node
 
-class_name User_PlatformBehavior2D
+class_name User_PlatformBehavior2D, "./PlatformBehavior.png"
 
 #Emits when collided with movement type of
 #'Move and Collide' active. This returns

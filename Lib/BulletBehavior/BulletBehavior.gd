@@ -16,7 +16,7 @@
 tool
 extends Node
 
-class_name User_BulletBehavior2D
+class_name User_BulletBehavior2D, "./BulletBehavior.png"
 
 signal distance_travelled_reached
 signal stopped_moving 

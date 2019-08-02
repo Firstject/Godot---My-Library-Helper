@@ -89,6 +89,8 @@
 
 extends Node
 
+class_name User_AudioManager, "./AudioManager.png"
+
 signal bgm_just_started(bgm_name)
 
 #BGM (Background Music)

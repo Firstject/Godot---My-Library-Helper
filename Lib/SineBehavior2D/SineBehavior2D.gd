@@ -12,7 +12,7 @@
 
 extends Node
 
-class_name User_SineBehavior2D
+class_name User_SineBehavior2D, "./SineBehavior.png"
 
 enum MOVEMENT_TYPE {
 	HORIZONTAL,

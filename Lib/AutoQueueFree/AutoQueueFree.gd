@@ -46,7 +46,7 @@
 
 extends Node
 
-class_name User_AutoQueueFree
+class_name User_AutoQueueFree, "./AutoQueueFree.png"
 
 enum PresetQueueFreeAction {
 	DO_NOTHING,
