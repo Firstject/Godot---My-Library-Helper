@@ -115,6 +115,13 @@ export(float) var MAX_FALL_SPEED = 600
 #considering as a floor.
 export var FLOOR_NORMAL = Vector2(0, -1)
 
+#Current velocity reported after move_and_slide or
+#move_and_collided on root node is called.
+#Note that if you want to get velocity report before
+#move_and_slide or move_and_collide is called, use
+#velocity_before_move_and_slide instead.
+export (Vector2) var SNAP_FLOOR_VEL = Vector2(0, 16)
+
 #When off, this will become 'inactive' state.
 export(bool) var INITIAL_STATE = true
 
@@ -250,7 +257,17 @@ func _physics_process(delta):
 #This also emit signal the collision's information.
 #Sets velocity after move_and_slide() on parent node is called.
 func custom_move_and_slide(custom_velocity, custom_floor_normal) -> Vector2:
-	var vel = parent.move_and_slide(custom_velocity, custom_floor_normal)
+	var vel : Vector2
+	
+	#Make sure to disable snap when the character jumps.
+	#Jumping is usually done by setting velocity.y to
+	#a negative velocity (like -100), but if snapping
+	#is active this will not work, as the character will
+	#snap back to the floor.
+	if on_floor and jump:
+		vel = parent.move_and_slide(custom_velocity, custom_floor_normal)
+	else:
+		vel = parent.move_and_slide_with_snap(custom_velocity, SNAP_FLOOR_VEL, custom_floor_normal)
 	
 	if parent.get_slide_count() > 0:
 		for i in parent.get_slide_count():
