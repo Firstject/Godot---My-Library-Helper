@@ -24,4 +24,9 @@ Located at **/ExampleUsage** folder. Each sub-folders contain scene files and ex
 
 **❌AutoQueueFree** - Automatically take action when activated or as soon as the scene tree is entered. The main use of AutoQueueFree is to remove parent node as soon as the scene is entered. Useful if you're working on visual texts or objects that shows only in the editor and you do not wish it to be appeared in release builds. Also supports signal that connects to this node to start activation (usage is described in lib script).
 
+**〰ShakeBehavior2D** - A behavior node that simulates both Node2D and Control node
+	with the ability to shake on their position. Useful for making
+	a hit effect such as when taking damage. Supports changing
+	the node's property e.g. offset.
+
 _More coming soon!_
