@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ExampleUsage/UsingShakeBehavior2D/UsingShakeBehavior2D.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Lib/ShakeBehavior/ShakeBehavior.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Lib/ShakeBehavior/ShakeBehavior.png" type="Texture" id=4]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 1, Vector2( 1, 1 ), 0.0, 0.0, 1, 0 ]
+
+[node name="UsingShakeBehavior" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 171.734, 158.517 )
+texture = ExtResource( 2 )
+
+[node name="ShakeBehavior" parent="Sprite" instance=ExtResource( 3 )]
+vector_property_to_set = "offset"
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 165.176, 390.503 )
+texture = ExtResource( 2 )
+
+[node name="ShakeBehavior" parent="Sprite2" instance=ExtResource( 3 )]
+infinite_duration = true
+vector_property_to_set = "offset"
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 636.328, 156.586 )
+texture = ExtResource( 2 )
+
+[node name="ShakeBehavior" parent="Sprite3" instance=ExtResource( 3 )]
+shake_duration = 0.5
+shake_curve = SubResource( 1 )
+vector_property_to_set = "offset"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 399.074, 301.521 )
+current = true
+
+[node name="ShakeBehavior" parent="Camera2D" instance=ExtResource( 3 )]
+shake_duration = 1.0
+vector_property_to_set = "offset"
+
+[node name="ShakeButton" type="Button" parent="."]
+margin_left = 104.339
+margin_top = 231.565
+margin_right = 207.339
+margin_bottom = 261.565
+text = "SHAKE! (decay)"
+icon = ExtResource( 4 )
+
+[node name="ShakeINFButton" type="Button" parent="."]
+margin_left = 95.0846
+margin_top = 473.594
+margin_right = 242.085
+margin_bottom = 503.594
+text = "SHAKE indefinitely"
+icon = ExtResource( 4 )
+
+[node name="ShakeConstant" type="Button" parent="."]
+margin_left = 549.845
+margin_top = 225.486
+margin_right = 720.845
+margin_bottom = 255.486
+text = "SHAKE! (constant rate)"
+icon = ExtResource( 4 )
+
+[node name="ShakeCanvasBtn" type="Button" parent="."]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 561.64
+margin_top = 469.409
+margin_right = 717.64
+margin_bottom = 499.409
+text = "Shake entire canvas"
+icon = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="ShakeCanvasBtn"]
+margin_left = 25.5063
+margin_top = -133.476
+margin_right = 124.506
+margin_bottom = -34.476
+texture = ExtResource( 4 )
+stretch_mode = 6
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -166.047
+margin_top = -38.7076
+margin_right = 184.953
+margin_bottom = -24.7076
+text = "Try changing each behavior's properties through editor."
+align = 1
+[connection signal="pressed" from="ShakeButton" to="." method="_on_ShakeButton_pressed"]
+[connection signal="pressed" from="ShakeINFButton" to="." method="_on_ShakeINFButton_pressed"]
+[connection signal="pressed" from="ShakeConstant" to="." method="_on_ShakeConstant_pressed"]
+[connection signal="pressed" from="ShakeCanvasBtn" to="." method="_on_ShakeCanvasBtn_pressed"]

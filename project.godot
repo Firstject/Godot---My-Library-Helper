@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://Lib/PlatformBehavior2D/PlatformBehavior2D.gd"
 }, {
 "base": "Node",
+"class": "User_ShakeBehavior2D",
+"language": "GDScript",
+"path": "res://Lib/ShakeBehavior/ShakeBehavior.gd"
+}, {
+"base": "Node",
 "class": "User_SineBehavior2D",
 "language": "GDScript",
 "path": "res://Lib/SineBehavior2D/SineBehavior2D.gd"
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "User_AutoQueueFree": "res://Lib/AutoQueueFree/AutoQueueFree.png",
 "User_BulletBehavior2D": "res://Lib/BulletBehavior/BulletBehavior.png",
 "User_PlatformBehavior2D": "res://Lib/PlatformBehavior2D/PlatformBehavior.png",
+"User_ShakeBehavior2D": "res://Lib/ShakeBehavior/ShakeBehavior.png",
 "User_SineBehavior2D": "res://Lib/SineBehavior2D/SineBehavior.png",
 "User_SpriteCycling2D": "res://Lib/SpriteCycling/SpriteCycling.png"
 }
