@@ -1,18 +1,22 @@
 # Sine Behavior
-# CR: Construct 2
-# By Okanar, First
-# ---------------
-
-# The Sine behavior can adjust an object's properties 
-# (like its position, size or angle) back and forth 
-# according to an oscillating sine wave. This can be used
-# to create interesting visual effects. Despite the name,
-# alternative wave functions like 'Triangle' can also be
-# selected to create different effects.
+# Written by: Okanar, First
 
 extends Node
 
 class_name User_SineBehavior2D, "./SineBehavior.png"
+
+"""
+	The Sine behavior can adjust an object's properties 
+	(like its position, size or angle) back and forth 
+	according to an oscillating sine wave. This can be used
+	to create interesting visual effects. Despite the name,
+	alternative wave functions like 'Triangle' can also be
+	selected to create different effects.
+"""
+
+#-------------------------------------------------
+#      Constants
+#-------------------------------------------------
 
 enum MOVEMENT_TYPE {
 	HORIZONTAL,
@@ -25,6 +29,10 @@ enum PROCESS_TYPE {
 	IDLE,
 	PHYSICS
 }
+
+#-------------------------------------------------
+#      Properties
+#-------------------------------------------------
 
 # -Active on start-
 #
@@ -89,15 +97,71 @@ var _init_position : Vector2
 var _current_cycle : float
 
 #-------------------------------------------------
-#       Sine Conditions
+#       Notifications
 #-------------------------------------------------
 
-#True if the behavior is active.
-func is_active() -> bool:
-	return active_on_start
+func _ready() -> void:
+	var _parent = get_parent()
+	
+	_init_position = _parent.get_position()
+	
+	#Initialize period, period_offset, and magnitude random
+	#by their respective random value
+	period -= period * rand_range(0, period_random)
+	period_offset -= period_offset * rand_range(0, period_offset_random)
+	magnitude -= magnitude * rand_range(0, magnitude_random)
+	
+	_current_cycle += period_offset
+	
+	if wave == null:
+		push_warning(str(self.get_path(), " Curve's property is not specified. No action was taken."))
+
+func _process(delta: float) -> void:
+	if process_mode == PROCESS_TYPE.IDLE:
+		_do_process(delta)
+
+func _physics_process(delta: float) -> void:
+	if process_mode == PROCESS_TYPE.PHYSICS:
+		_do_process(delta)
 
 #-------------------------------------------------
-#       Sine Actions
+#       Private Methods
+#-------------------------------------------------
+
+func _do_process(delta: float) -> void:
+	var _parent = get_parent()
+	if not is_active():
+		return
+	if wave == null:
+		return
+	
+	var calculated_interpolate_wave = wave.interpolate_baked(_current_cycle / period) * magnitude
+	
+	if _parent is Node2D:
+		if movement == MOVEMENT_TYPE.HORIZONTAL:
+			_parent.position.x = _init_position.x + calculated_interpolate_wave
+		if movement == MOVEMENT_TYPE.VERTICAL:
+			_parent.position.y = _init_position.y + calculated_interpolate_wave
+		if movement == MOVEMENT_TYPE.ANGLE:
+			_parent.rotation_degrees = calculated_interpolate_wave
+		if movement == MOVEMENT_TYPE.OPACITY:
+			_parent.modulate.a8 = calculated_interpolate_wave
+	if _parent is Control:
+		if movement == MOVEMENT_TYPE.HORIZONTAL:
+			_parent.rect_position.x = _init_position.x + calculated_interpolate_wave
+		if movement == MOVEMENT_TYPE.VERTICAL:
+			_parent.rect_position.y = _init_position.y + calculated_interpolate_wave
+		if movement == MOVEMENT_TYPE.ANGLE:
+			_parent.rect_rotation = calculated_interpolate_wave
+		if movement == MOVEMENT_TYPE.OPACITY:
+			_parent.modulate.a8 = calculated_interpolate_wave
+	
+	_current_cycle += delta
+	if _current_cycle > period:
+		_current_cycle -= period
+
+#-------------------------------------------------
+#      Setters & Getters
 #-------------------------------------------------
 
 # Enable or disable the behavior. When disabled, the behavior does not
@@ -136,64 +200,6 @@ func set_period(var value : float) -> void:
 func set_wave(var resource : Curve) -> void:
 	wave = resource
 
-#-------------------------------------------------
-#       Initialization using Ready function
-#-------------------------------------------------
-func _ready() -> void:
-	var _parent = get_parent()
-	
-	_init_position = _parent.get_position()
-	
-	#Initialize period, period_offset, and magnitude random
-	#by their respective random value
-	period -= period * rand_range(0, period_random)
-	period_offset -= period_offset * rand_range(0, period_offset_random)
-	magnitude -= magnitude * rand_range(0, magnitude_random)
-	
-	_current_cycle += period_offset
-	
-	if wave == null:
-		push_warning(str(self.get_path(), " Curve's property is not specified. No action was taken."))
-
-#-------------------------------------------------
-#       Process
-#-------------------------------------------------
-func _process(delta: float) -> void:
-	if process_mode == PROCESS_TYPE.IDLE:
-		_do_process(delta)
-
-func _physics_process(delta: float) -> void:
-	if process_mode == PROCESS_TYPE.PHYSICS:
-		_do_process(delta)
-
-func _do_process(delta: float) -> void:
-	var _parent = get_parent()
-	if not is_active():
-		return
-	if wave == null:
-		return
-	
-	var calculated_interpolate_wave = wave.interpolate_baked(_current_cycle / period) * magnitude
-	
-	if _parent is Node2D:
-		if movement == MOVEMENT_TYPE.HORIZONTAL:
-			_parent.position.x = _init_position.x + calculated_interpolate_wave
-		if movement == MOVEMENT_TYPE.VERTICAL:
-			_parent.position.y = _init_position.y + calculated_interpolate_wave
-		if movement == MOVEMENT_TYPE.ANGLE:
-			_parent.rotation_degrees = calculated_interpolate_wave
-		if movement == MOVEMENT_TYPE.OPACITY:
-			_parent.modulate.a8 = calculated_interpolate_wave
-	if _parent is Control:
-		if movement == MOVEMENT_TYPE.HORIZONTAL:
-			_parent.rect_position.x = _init_position.x + calculated_interpolate_wave
-		if movement == MOVEMENT_TYPE.VERTICAL:
-			_parent.rect_position.y = _init_position.y + calculated_interpolate_wave
-		if movement == MOVEMENT_TYPE.ANGLE:
-			_parent.rect_rotation = calculated_interpolate_wave
-		if movement == MOVEMENT_TYPE.OPACITY:
-			_parent.modulate.a8 = calculated_interpolate_wave
-	
-	_current_cycle += delta
-	if _current_cycle > period:
-		_current_cycle -= period
+#True if the behavior is active.
+func is_active() -> bool:
+	return active_on_start

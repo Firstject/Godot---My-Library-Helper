@@ -1,30 +1,44 @@
-#BulletBehavior
-#Code by: First
- 
-# The Bullet behavior simply moves parent object forwards at
-# an angle. #However, it provides extra options like gravity
-# and angle in degrees that allow it to also be used.
-# Like the name suggests it is ideal for projectiles like
-# bullets, but it is also useful for automatically 
-# controlling other types of objects like enemies
-# which move forwards continuously.
-
-  ###Usage###
-# This will work on any parent node having 'position' property.
-# Place it under parent node and start configuring.
+# BulletBehavior
+# Written by: First
 
 tool
 extends Node
 
 class_name User_BulletBehavior2D, "./BulletBehavior.png"
+ 
+"""
+	The Bullet behavior simply moves parent object forwards at
+	an angle. #However, it provides extra options like gravity
+	and angle in degrees that allow it to also be used.
+	Like the name suggests it is ideal for projectiles like
+	bullets, but it is also useful for automatically 
+	controlling other types of objects like enemies
+	which move forwards continuously.
+	
+	  ###Usage###
+	This will work on any parent node having 'position' property.
+	Place it under parent node and start configuring.
+"""
+
+#-------------------------------------------------
+#      Signals
+#-------------------------------------------------
 
 signal distance_travelled_reached
 signal stopped_moving 
+
+#-------------------------------------------------
+#      Constants
+#-------------------------------------------------
 
 enum PROCESS_TYPE {
 	IDLE,
 	PHYSICS
 }
+
+#-------------------------------------------------
+#      Properties
+#-------------------------------------------------
 
 #Whether the behavior is initially enabled or disabled. If disabled,
 #it can be enabled at runtime.
@@ -87,6 +101,10 @@ var current_distance_traveled : float = 0
 var vec_angle : Vector2
 var velocity : Vector2
 
+#-------------------------------------------------
+#      Notifications
+#-------------------------------------------------
+
 func _get_configuration_warning() -> String:
 	var warning : String
 	
@@ -115,6 +133,10 @@ func _physics_process(delta: float) -> void:
 	if process_mode == PROCESS_TYPE.PHYSICS:
 		_do_process(delta)
 		_check_and_emit_signals()     
+
+#-------------------------------------------------
+#      Private Methods
+#-------------------------------------------------
 
 func _do_process(delta: float) -> void:
 	var _parent = get_parent()

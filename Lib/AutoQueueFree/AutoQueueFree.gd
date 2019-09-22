@@ -1,52 +1,57 @@
-#Auto Queue Free
-#Code by: First
-
-#This node automatically take action when activated
-#or as soon as the scene tree is entered.
-#The main use of AutoQueueFree is to
-#remove parent node as soon as the scene is entered.
-#Useful if you're working on visual texts or objects that
-#shows only in the editor and you do not wish it to be
-#appeared in release builds.
-#Also supports signal that connects to #this node to start 
-#activation (usage is described below).
-
-# Usage: Can be used anywhere. Place it within parent node.
-#        To activate this node via signalling, connect to
-#        this node and rename the method in node to
-#        "_on_signal_call"
-
-# Variables
-#
-# enum PresetQueueFreeAction
-#       ┠╴DO_NOTHING : Don't do anything when activated.
-#       ┠╴QUEUE_FREE : Queue free parent nodes, including
-#       ┃              children and this node as well.
-#       ┠╴FREE : Free all children and parent node. Note that
-#       ┃        this only deletes the object from memory and
-#       ┃        is not recommended unless you know what
-#       ┃        you're doing. 
-#       ┠╴RELEASE_CHILDREN : Moves all children outside the parent.
-#       ┃                    This node and parent are unaffected.
-#       ┠╴FREE_PARENT_RELEASE_CHILDREN : Moves all children outside
-#       ┃                                the parent and free parent.
-#       ┖╴FREE_CHILDREN_BUT_PARENT : This frees all children except
-#                                   parent and this node.
-#
-# enum PresetQueueFreeAction
-#       ┠╴AT_THE_START : Start activation immediately as soon as
-#       ┃                _ready function is called.
-#       ┖╴DISABLED : Don't do anything.
-#
-# export var one_time_use : Allow the use of this node once.
-# export var allow_signal_connect_call : Determine whether this node
-#                                        activates when a signal is
-#                                        sent to this node.
-# var is_activated : For use with @one_time_use
+# Auto Queue Free
+# Written by: First
 
 extends Node
 
 class_name User_AutoQueueFree, "./AutoQueueFree.png"
+
+"""
+	This node automatically take action when activated
+	or as soon as the scene tree is entered.
+	The main use of AutoQueueFree is to
+	remove parent node as soon as the scene is entered.
+	Useful if you're working on visual texts or objects that
+	shows only in the editor and you do not wish it to be
+	appeared in release builds.
+	Also supports signal that connects to #this node to start 
+	activation (usage is described below).
+	 Usage: Can be used anywhere. Place it within parent node.
+			To activate this node via signalling, connect to
+			this node and rename the method in node to
+			'_on_signal_call'
+	
+	 Variables
+	
+	 enum PresetQueueFreeAction
+		   ┠╴DO_NOTHING : Don't do anything when activated.
+		   ┠╴QUEUE_FREE : Queue free parent nodes, including
+		   ┃              children and this node as well.
+		   ┠╴FREE : Free all children and parent node. Note that
+		   ┃        this only deletes the object from memory and
+		   ┃        is not recommended unless you know what
+		   ┃        you're doing. 
+		   ┠╴RELEASE_CHILDREN : Moves all children outside the parent.
+		   ┃                    This node and parent are unaffected.
+		   ┠╴FREE_PARENT_RELEASE_CHILDREN : Moves all children outside
+		   ┃                                the parent and free parent.
+		   ┖╴FREE_CHILDREN_BUT_PARENT : This frees all children except
+									   parent and this node.
+	
+	 enum PresetQueueFreeAction
+		   ┠╴AT_THE_START : Start activation immediately as soon as
+		   ┃                _ready function is called.
+		   ┖╴DISABLED : Don't do anything.
+	
+	 export var one_time_use : Allow the use of this node once.
+	 export var allow_signal_connect_call : Determine whether this node
+											activates when a signal is
+											sent to this node.
+	 var is_activated : For use with @one_time_use
+"""
+
+#-------------------------------------------------
+#      Constants
+#-------------------------------------------------
 
 enum PresetQueueFreeAction {
 	DO_NOTHING,
@@ -63,17 +68,41 @@ enum PresetActivationMode {
 	DISABLED
 }
 
+#-------------------------------------------------
+#      Properties
+#-------------------------------------------------
+
 export (PresetQueueFreeAction) var queue_free_action = PresetQueueFreeAction.QUEUE_FREE
+
 export (PresetActivationMode) var activation_mode = PresetActivationMode.AT_THE_START
+
 export (bool) var one_time_use = false
+
 export (bool) var allow_signal_connect_call = true
+
 export (Array, NodePath) var custom_queue_free_paths = []
 
 var is_activated = false
 
+#-------------------------------------------------
+#      Notifications
+#-------------------------------------------------
+
 func _ready():
 	if activation_mode == PresetActivationMode.AT_THE_START:
 		_start()
+
+#-------------------------------------------------
+#      Public Methods
+#-------------------------------------------------
+
+#Start immediately without any hesitate
+func direct_start():
+	_start()
+
+#-------------------------------------------------
+#      Private Methods
+#-------------------------------------------------
 
 func _start():
 	if one_time_use && is_activated:
@@ -127,11 +156,12 @@ func _is_parent_viewport(push_err : bool = false):
 	
 	return is_parent_viewport
 
+#-------------------------------------------------
+#      Connections
+#-------------------------------------------------
+
 #Use this if you want to connect signal and call on this func.
 func _on_signal_call():
 	if allow_signal_connect_call:
 		_start()
 
-#Start immediately without any hesitate
-func direct_start():
-	_start()

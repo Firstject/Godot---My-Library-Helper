@@ -79,5 +79,5 @@ anchor_bottom = 1.0
 margin_top = -82.0
 margin_right = 360.0
 custom_colors/font_color = Color( 0.745098, 1, 0.207843, 1 )
-text = "NOTE: If you duplicate a SineBehavior node, all change mades to a curve will also apply to a duplicated node. If you want a different curve, don't edit it directly, but make it unique (Make Unique option) or creating a new one (New Curve) instead."
+text = "NOTE: If you duplicate a SineBehavior node, all change made to a curve will also apply to a duplicated node. If you want a different curve, don't edit it directly, but make it unique (Make Unique option) or creating a new one (New Curve) instead."
 autowrap = true

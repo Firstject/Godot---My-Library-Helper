@@ -1,48 +1,54 @@
-#PlatformBehavior2D
-#Code by: First
+# PlatformBehavior2D
+# Written by: First
 
-# The Platform behavior applies the parent node of
-# KinematicBody2d a side-view "jump and run" style
-# movement. By default the Platform movement is
-# controlled by the ui_left and ui_right keys and
-# ui_up to jump.
-
-# To set up custom controls, you
-# can do so by setting export variables:
-#    DEFAULT_CONTROL_LEFT = 'ui_left'
-#    DEFAULT_CONTROL_RIGHT = 'ui_right'
-#    DEFAULT_CONTROL_JUMP = 'ui_up'
-# To set up automatic controls, you can set
-# either one of these:
-#    simulate_walk_left = true
-#    simulate_walk_right = true
-#    simulate_jump = true
-# While any of the above is true (e.g. 
-# simulate_walk_left), the parent node will
-# move itself as if it was holding left button.
-
-  ###Usage###
-# Instance PlatformBehavior2D (from /Lib) or
-# adding child node as
-# User_PlatformBehavior2D (PlatformBehavior2D.gd)
-# where you want a KinematicBody2D to have this
-# behavior enabled. When attached, it's ready
-# to be used!
-
-#PROs:
-# - No need to attach script and write it over
-#   on every KinematicBody2D objects.
-# - Can be used on every object that's
-#   KinematicBody2D.
-#CONs:
-# - Quite complex to use.
-# - The script is currently very complicated to 
-#   understand if you plan to improve it.
-
-tool
+tool #Used for configuration warnings.
 extends Node
 
 class_name User_PlatformBehavior2D, "./PlatformBehavior.png"
+
+"""
+The Platform behavior applies the parent node of
+KinematicBody2d a side-view 'jump and run' style
+movement. By default the Platform movement is
+controlled by the ui_left and ui_right keys and
+ui_up to jump.
+
+To set up custom controls, you
+can do so by setting export variables:
+   DEFAULT_CONTROL_LEFT = 'ui_left'
+   DEFAULT_CONTROL_RIGHT = 'ui_right'
+   DEFAULT_CONTROL_JUMP = 'ui_up'
+To set up automatic controls, you can set
+either one of these:
+   simulate_walk_left = true
+   simulate_walk_right = true
+   simulate_jump = true
+While any of the above is true (e.g. 
+simulate_walk_left), the parent node will
+move itself as if it was holding left button.
+
+  ###Usage###
+Instance PlatformBehavior2D (from /Lib) or
+adding child node as
+User_PlatformBehavior2D (PlatformBehavior2D.gd)
+where you want a KinematicBody2D to have this
+behavior enabled. When attached, it's ready
+to be used!
+
+PROs:
+ - No need to attach script and write it over
+   on every KinematicBody2D objects.
+ - Can be used on every object that's
+   KinematicBody2D.
+CONs:
+ - Quite complex to use.
+ - The script is currently very complicated to 
+   understand if you plan to improve it.
+"""
+
+#-------------------------------------------------
+#      Signals
+#-------------------------------------------------
 
 #Emits when collided with movement type of
 #'Move and Collide' active. This returns
@@ -77,10 +83,18 @@ signal by_wall
 #during the last custom_move_and_slide() call.
 signal collided(kinematic_collision_2d)
 
+#-------------------------------------------------
+#      Constants
+#-------------------------------------------------
+
 enum MOVE_TYPE_PRESET {
 	MOVE_AND_SLIDE,
 	MOVE_AND_COLLIDE
 }
+
+#-------------------------------------------------
+#      Properties
+#-------------------------------------------------
 
 #Movement type for parent node of KinematicBody2D
 #If it's MOVE_AND_SLIDE, method move_and_slide()
@@ -154,6 +168,10 @@ var on_ceiling = false
 var on_wall = false
 var jump = false #Init... once
 var move_direction : int #-1 = moving left, 1 = moving right, 0 = still.
+
+#-------------------------------------------------
+#      Notifications
+#-------------------------------------------------
 
 func _get_configuration_warning() -> String:
 	var warning : String
@@ -251,7 +269,10 @@ func _physics_process(delta):
 		move_direction = -1
 	if velocity.x > SIDING_CHANGE_SPEED:
 		move_direction = 1
-	
+
+#-------------------------------------------------
+#      Public Methods
+#-------------------------------------------------
 
 #The same as calling parent: move_and_slide
 #This also emit signal the collision's information.
