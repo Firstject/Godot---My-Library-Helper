@@ -42,32 +42,45 @@ class_name User_SpriteCycling2D, "./SpriteCycling.png"
 #      Properties
 #-------------------------------------------------
 
-export(bool) var enabled = true
+#The node you want all of its children to have this behavior applied.
+export (NodePath) var root_node = "./.."
+
+#When true, this will have no effect and won't do anything.
+export(bool) var active = true setget set_active, is_active
 
 #Array length should be power of n. e.g. 1, 2, 4, or 8, ..
 #this will wait for n frames before iterate starts.
-#there is a pointer that will move to the next of an array
+#There is a pointer that will move to the next of an array
 #once iteration is done in said frame.
-export(Array, int) var frames_per_iterate = [0] 
+export(Array, int) var frames_per_iterate = [0]
+
 
 #Increment every frames. Resets on reaching frames_per_iterate[pointer]
-var z_swapping = 0
+var z_swapping = 0 
 
 #Pointer on array of frames_per_iterate
-var pointer = 0 
+var pointer = 0
 
 #0 = no iterate, other than 0 = iterate
 var swap_mode = 0 
+
+
+
+
 
 #-------------------------------------------------
 #      Notifications
 #-------------------------------------------------
 
 func _process(delta : float) -> void:
-	if !enabled:
+	if Engine.is_editor_hint():
+		return
+	if not active:
 		return
 	
-	var children = get_parent().get_children()
+	var _fetched_root_node = get_node(root_node)
+	if _fetched_root_node == null: return
+	var children = _fetched_root_node.get_children()
 	var it = children.size()
 	
 	for i in children:
@@ -80,22 +93,35 @@ func _process(delta : float) -> void:
 	
 	if(z_swapping >= frames_per_iterate[pointer]):
 		z_swapping = 0
-		modify_swap_mode()
-		pointer = move_pointer(pointer, frames_per_iterate)
+		_modify_swap_mode()
+		pointer = _move_pointer(pointer, frames_per_iterate)
 	else:
 		z_swapping += 1
 
+
+
 #-------------------------------------------------
-#      Public Methods
+#      Private Methods
 #-------------------------------------------------
 
-func modify_swap_mode():
+func _modify_swap_mode():
 	swap_mode = int(!bool(swap_mode))
 
-func move_pointer(var which_pointer : int, var which_array : Array):
+func _move_pointer(var which_pointer : int, var which_array : Array):
 	if which_pointer >= which_array.size() - 1:
 		which_pointer = 0
 	else:
 		which_pointer += 1
 	
 	return which_pointer
+
+
+#-------------------------------------------------
+#       Setters & Getters
+#-------------------------------------------------
+
+func set_active(val : bool) -> void:
+	active = true
+
+func is_active() -> bool:
+	return active

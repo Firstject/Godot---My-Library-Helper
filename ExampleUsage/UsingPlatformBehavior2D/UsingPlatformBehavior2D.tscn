@@ -304,9 +304,9 @@ texture = ExtResource( 1 )
 shape = SubResource( 2 )
 
 [node name="PlatformBehavior2D" parent="KinematicBody2D" instance=ExtResource( 2 )]
+CONTROL_ENABLE = true
 
 [node name="Another AI test" type="KinematicBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 704, 48 )
 collision_layer = 2
 script = ExtResource( 3 )
@@ -323,9 +323,8 @@ shape = SubResource( 2 )
 
 [node name="PlatformBehavior2D" parent="Another AI test" instance=ExtResource( 2 )]
 GRAVITY_VEC = Vector2( 0, 1800 )
-WALK_SPEED = 500.0
+WALK_SPEED = 300.0
 VELOCITY_X_DAMPING = 1.0
-CONTROL_ENABLE = false
 
 [node name="Explaination" type="Control" parent="."]
 anchor_right = 1.0

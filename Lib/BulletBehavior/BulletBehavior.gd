@@ -20,17 +20,33 @@ class_name User_BulletBehavior2D, "./BulletBehavior.png"
 	Place it under parent node and start configuring.
 """
 
+
+#-------------------------------------------------
+#      Classes
+#-------------------------------------------------
+
 #-------------------------------------------------
 #      Signals
 #-------------------------------------------------
 
 signal distance_travelled_reached
+
 signal stopped_moving 
+
+#Reports that a kinematicbody2D collided with something.
+#Only emitted if root node is a Kinematicbody2D and you set
+#`kbody_move_and_collide` to on.
+signal kbody_collided(kinematic_collision_2d)
 
 #-------------------------------------------------
 #      Constants
 #-------------------------------------------------
 
+#The process how the object moves from a chosen behavior:
+#
+#- Idle: Update once per frame.
+#
+#- Physics: Update and sync with physics.
 enum PROCESS_TYPE {
 	IDLE,
 	PHYSICS
@@ -40,15 +56,18 @@ enum PROCESS_TYPE {
 #      Properties
 #-------------------------------------------------
 
+#The node you want to have this behavior applied.
+export (NodePath) var root_node = "./.." setget set_root_node, get_root_node
+
 #Whether the behavior is initially enabled or disabled. If disabled,
 #it can be enabled at runtime.
 export (bool) var active = true
 
-# -Process mode-
+#The process how the object moves from a chosen behavior:
 #
-# The process how the object moves from a chosen behavior:
-# - Idle: Update once per frame.
-# - Physics: Update and sync with physics.
+#- Idle: Update once per frame.
+#
+#- Physics: Update and sync with physics.
 export(PROCESS_TYPE) var process_mode = 1
 
 #The bullet's initial speed, in pixels per second.
@@ -74,16 +93,21 @@ export (float) var acceleration = 0
 #is bullet down by gravity.
 export (float) var gravity = 0
 
-#The maximum force of gravity. If the gravity of the parent is
+#The maximum force of gravity. If the gravity of the root node is
 #above zero, max fall speed will be positive (as what it was).
-#And if the gravity of the parent is below zero, max fall speed
+#And if the gravity of the root node is below zero, max fall speed
 #will be used as negative value.
 export (float, 0, 9000, 0.1) var max_fall_speed = 900
 
-#Angle in degrees.
 #0 = Right, 90 = Down, 180 = Left, 270 = Up
+#
 #0 = Right, -90 = Up, -180 = Left, -270 = Down
 export (float) var angle_in_degrees = 0.0
+
+#Move and collide for a KinematicBody2D node. This is only for
+#KinematicBody2D and will stop if it collides, which emits signal
+#`kbody_collided(kinematic_collision_2d)` when that happens.
+export (bool) var kbody_move_and_collide
 
 #If true, the speed will never go below zero.
 export (bool) var allow_negative_speed = false
@@ -101,22 +125,26 @@ var current_distance_traveled : float = 0
 var vec_angle : Vector2
 var velocity : Vector2
 
+
+
 #-------------------------------------------------
 #      Notifications
 #-------------------------------------------------
 
 func _get_configuration_warning() -> String:
-	var warning : String
+	var warning : String = ""
 	
-	if not "position" in get_parent():
-		warning += "This will work only on parent node having 'position' property. "
-		warning += "Consider placing it on Node2D or Control as parent node."
+	if not "position" in get_node(root_node):
+		warning += "This will work only on root node having 'position' property. "
+		warning += "Consider picking root node on Node2D or Control."
 	
 	return warning
 
 func _ready() -> void:
-	var _parent = get_parent()
-	_init_position = _parent.get_position()
+	if Engine.is_editor_hint(): #We want this to works only in-game.
+		return
+	
+	_init_position = get_node(root_node).get_position()
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): #We want this to works only in-game.
@@ -132,14 +160,21 @@ func _physics_process(delta: float) -> void:
 	
 	if process_mode == PROCESS_TYPE.PHYSICS:
 		_do_process(delta)
-		_check_and_emit_signals()     
+		_check_and_emit_signals()
+
+
+
+
+#-------------------------------------------------
+#      Public Methods
+#-------------------------------------------------
 
 #-------------------------------------------------
 #      Private Methods
 #-------------------------------------------------
 
 func _do_process(delta: float) -> void:
-	var _parent = get_parent()
+	var _fetched_root_node = get_node(root_node)
 	if not active:
 		return
 	
@@ -166,15 +201,24 @@ func _do_process(delta: float) -> void:
 	var _gravity = Vector2(0, current_gravity) * delta
 	
 	#Remember current position
-	var prev_position = _parent.position
+	var prev_position = _fetched_root_node.position
 	
 	#Start movement.
-	_parent.position += velocity + _gravity
+	#If the root node is a KinematicBody2D, we will call
+	#move_and_collide (if kbody_move_and_collide is enabled).
+	#Otherwise, we will just change its position instead.
+	if _fetched_root_node is KinematicBody2D and kbody_move_and_collide == true:
+		var kinematic_col = _fetched_root_node.move_and_collide(velocity + _gravity)
+		
+		if kinematic_col != null:
+			emit_signal("kbody_collided", kinematic_col)
+	else:
+		_fetched_root_node.position += velocity + _gravity
 	
 	#Increment values
 	current_acceleration += acceleration * delta
 	current_gravity += gravity * delta
-	current_distance_traveled += prev_position.distance_to(_parent.position)
+	current_distance_traveled += prev_position.distance_to(_fetched_root_node.position)
 
 #Check all emit-able signals. If there's one that can be emitted,
 #start one.
@@ -192,3 +236,16 @@ func _check_and_emit_signals():
 		_is_signal_stopped_moving_emitted = true
 	else:
 		_is_signal_stopped_moving_emitted = false
+
+
+
+#-------------------------------------------------
+#      Setters & Getters
+#-------------------------------------------------
+
+func set_root_node(val) -> void:
+	root_node = val
+	emit_signal("script_changed")
+
+func get_root_node() -> NodePath:
+	return root_node
