@@ -45,7 +45,7 @@ class_name User_SpriteCycling2D, "./SpriteCycling.png"
 #The node you want all of its children to have this behavior applied.
 export (NodePath) var root_node = "./.."
 
-#When true, this will have no effect and won't do anything.
+#When false, this will have no effect and won't do anything.
 export(bool) var active = true setget set_active, is_active
 
 #Array length should be power of n. e.g. 1, 2, 4, or 8, ..
@@ -121,7 +121,7 @@ func _move_pointer(var which_pointer : int, var which_array : Array):
 #-------------------------------------------------
 
 func set_active(val : bool) -> void:
-	active = true
+	active = val
 
 func is_active() -> bool:
 	return active
