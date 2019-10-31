@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "RandomNodePicker",
+"language": "GDScript",
+"path": "res://Lib/RandomNodePicker/RandomNodePicker.gd"
+}, {
+"base": "Node",
 "class": "User_AutoQueueFree",
 "language": "GDScript",
 "path": "res://Lib/AutoQueueFree/AutoQueueFree.gd"
@@ -40,6 +45,7 @@ _global_script_classes=[ {
 "path": "res://Lib/SpriteCycling/SpriteCycling.gd"
 } ]
 _global_script_class_icons={
+"RandomNodePicker": "",
 "User_AutoQueueFree": "res://Lib/AutoQueueFree/AutoQueueFree.png",
 "User_BulletBehavior2D": "res://Lib/BulletBehavior/BulletBehavior.png",
 "User_PlatformBehavior2D": "res://Lib/PlatformBehavior2D/PlatformBehavior.png",

@@ -29,4 +29,6 @@ Located at **/ExampleUsage** folder. Each sub-folders contain scene files and ex
 	a hit effect such as when taking damage. Supports changing
 	the node's property e.g. offset.
 
+**📤RandomNodePicker** - RandomNodePicker randomly pick a node within scene tree. You can specify where the root node is and it will fetch the children and pick one.
+
 _More coming soon!_
