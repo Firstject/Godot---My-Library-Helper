@@ -278,7 +278,24 @@ texture = ExtResource( 1 )
 shape = SubResource( 2 )
 
 [node name="PlatformBehavior2D" parent="KinematicBody2D" instance=ExtResource( 2 )]
+root_node = NodePath("./..")
+active = true
+process_mode = 1
+move_type = 0
+gravity = Vector2( 0, 900 )
+walk_speed = 250.0
+walk_friction = 0.1
+jump_speed = 360.0
+siding_change_vel = 10.0
+stop_on_slope = false
+max_slides = 3
+max_fall_speed = 300.0
+floor_normal = Vector2( 0, -1 )
+snap_floor_pixel = Vector2( 0, 6 )
 control_enable = true
+default_control_left = "ui_left"
+default_control_right = "ui_right"
+default_control_jump = "ui_up"
 
 [node name="Another AI test" type="KinematicBody2D" parent="."]
 position = Vector2( 704, 48 )
@@ -296,6 +313,24 @@ texture = ExtResource( 1 )
 shape = SubResource( 2 )
 
 [node name="PlatformBehavior2D" parent="Another AI test" instance=ExtResource( 2 )]
+root_node = NodePath("./..")
+active = true
+process_mode = 1
+move_type = 0
+gravity = Vector2( 0, 900 )
+walk_speed = 250.0
+walk_friction = 0.1
+jump_speed = 360.0
+siding_change_vel = 10.0
+stop_on_slope = false
+max_slides = 3
+max_fall_speed = 300.0
+floor_normal = Vector2( 0, -1 )
+snap_floor_pixel = Vector2( 0, 6 )
+control_enable = false
+default_control_left = "ui_left"
+default_control_right = "ui_right"
+default_control_jump = "ui_up"
 
 [node name="Explaination" type="Control" parent="."]
 anchor_right = 1.0

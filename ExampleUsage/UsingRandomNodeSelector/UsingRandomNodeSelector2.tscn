@@ -1,0 +1,571 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://ExampleUsage/UsingRandomNodeSelector/UsingRandomNodeSelector2.gd" type="Script" id=2]
+[ext_resource path="res://Lib/RandomNodeSelector/RandomNodeSelector.tscn" type="PackedScene" id=3]
+
+[node name="UsingRandomNodePicker" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Info" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="Label" parent="Info"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -296.5
+margin_top = 40.2966
+margin_right = 296.5
+margin_bottom = 54.2966
+text = "multiple nodes are randomly picked at the same time and then deleted from the scene tree."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeletedNodeLabel" type="Label" parent="Info"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.5
+margin_top = 390.0
+margin_right = 192.5
+margin_bottom = 404.0
+text = "Press the button to delete random nodes by an amount"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DelNodeButton" type="Button" parent="Info"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = -180.0
+margin_right = -46.0
+margin_bottom = -160.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_scale = Vector2( 2, 2 )
+text = "select_multi_random()"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DelNodeInverseButton" type="Button" parent="Info"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = -120.0
+margin_right = 7.0
+margin_bottom = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_scale = Vector2( 2, 2 )
+text = "select_inverse_multi_random()"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DelCountSpinBox" type="SpinBox" parent="Info"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -370.0
+margin_top = -180.0
+margin_right = -296.0
+margin_bottom = -130.0
+rect_scale = Vector2( 2, 2 )
+min_value = 1.0
+max_value = 30.0
+value = 1.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TryAgainLabel" type="Label" parent="Info"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -192.5
+margin_top = -50.0
+margin_right = 192.5
+margin_bottom = -36.0
+text = "Run this scene again to see a different result"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="RandomNodeSelector" parent="Sprites" instance=ExtResource( 3 )]
+
+[node name="Sprite1" type="Sprite" parent="Sprites"]
+position = Vector2( 120, 110 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite1"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="Sprites"]
+position = Vector2( 200, 110 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite2"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite3" type="Sprite" parent="Sprites"]
+position = Vector2( 280, 110 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite3"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite4" type="Sprite" parent="Sprites"]
+position = Vector2( 360, 110 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite4"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 4"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite5" type="Sprite" parent="Sprites"]
+position = Vector2( 440, 110 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite5"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 5"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite6" type="Sprite" parent="Sprites"]
+position = Vector2( 520, 110 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite6"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite7" type="Sprite" parent="Sprites"]
+position = Vector2( 600, 110 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite7"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 7"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite8" type="Sprite" parent="Sprites"]
+position = Vector2( 680, 110 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite8"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 8"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite9" type="Sprite" parent="Sprites"]
+position = Vector2( 120, 210 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite9"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 9"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite10" type="Sprite" parent="Sprites"]
+position = Vector2( 200, 210 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite10"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite11" type="Sprite" parent="Sprites"]
+position = Vector2( 280, 210 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite11"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 11"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite12" type="Sprite" parent="Sprites"]
+position = Vector2( 360, 210 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite12"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 12"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite13" type="Sprite" parent="Sprites"]
+position = Vector2( 440, 210 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite13"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 13"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite14" type="Sprite" parent="Sprites"]
+position = Vector2( 520, 210 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite14"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 14"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite15" type="Sprite" parent="Sprites"]
+position = Vector2( 600, 210 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite15"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 15"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite16" type="Sprite" parent="Sprites"]
+position = Vector2( 680, 210 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite16"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 16"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite17" type="Sprite" parent="Sprites"]
+position = Vector2( 120, 310 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite17"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 17"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite18" type="Sprite" parent="Sprites"]
+position = Vector2( 200, 310 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite18"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 18"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite19" type="Sprite" parent="Sprites"]
+position = Vector2( 280, 310 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite19"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 19"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite20" type="Sprite" parent="Sprites"]
+position = Vector2( 360, 310 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite20"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 20"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite21" type="Sprite" parent="Sprites"]
+position = Vector2( 440, 310 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite21"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 21"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite22" type="Sprite" parent="Sprites"]
+position = Vector2( 520, 310 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite22"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 22"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite23" type="Sprite" parent="Sprites"]
+position = Vector2( 600, 310 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite23"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 23"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite24" type="Sprite" parent="Sprites"]
+position = Vector2( 680, 310 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Sprites/Sprite24"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_bottom = -18.0
+text = "Sprite 24"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+[connection signal="pressed" from="Info/DelNodeButton" to="." method="_on_DelNodeButton_pressed"]
+[connection signal="pressed" from="Info/DelNodeInverseButton" to="." method="_on_DelNodeInverseButton_pressed"]
