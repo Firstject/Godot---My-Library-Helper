@@ -217,15 +217,9 @@ func select_inverse_multi_random(var node_remain_count : int) -> Array:
 
 #Remove this object in the array regardless if it is found or not.
 func _remove_selector(var children : Array) -> Array:
-	var children_with_pickers_removed : Array = []
+	children.erase(self)
 	
-	while not children.empty():
-		if not children.front() == self:
-			children_with_pickers_removed.push_back(children.pop_front())
-		else:
-			children.pop_front()
-	
-	return children_with_pickers_removed
+	return children
 
 func _push_root_node_vanished_error() -> void:
 	push_error(str(self, "Can't pick random. The root node might has been vanished or disappeared."))

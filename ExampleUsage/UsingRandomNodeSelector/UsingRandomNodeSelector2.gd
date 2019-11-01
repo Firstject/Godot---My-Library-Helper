@@ -9,6 +9,7 @@ func _ready():
 
 func pick_delete_random_nodes():
 	#Pick random multiple nodes.
+	selected_nodes.clear()
 	selected_nodes = $Sprites/RandomNodeSelector.select_multi_random($Info/DelCountSpinBox.value)
 	if selected_nodes.empty():
 		#Set text where no node has been deleted.
@@ -23,6 +24,7 @@ func pick_delete_random_nodes():
 
 func pick_delete_random_nodes_inverse():
 	#Pick random multiple nodes.
+	selected_nodes.clear()
 	selected_nodes = $Sprites/RandomNodeSelector.select_inverse_multi_random($Info/DelCountSpinBox.value)
 	if selected_nodes.empty():
 		#Set text where no node has been deleted.
