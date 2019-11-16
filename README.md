@@ -31,4 +31,6 @@ Located at **/ExampleUsage** folder. Each sub-folders contain scene files and ex
 
 **📤RandomNodeSelector** - RandomNodeSelector simply selects node within scene tree. You can specify where the root node is and it will fetch the children and select them.
 
+**🔆8DirectionBehavior** - The 8 Direction behavior allows an object to be moved up, down, left, right and on diagonals, controlled by the arrow keys by default. It is often useful for controlling the player in a top-down view game.
+
 _More coming soon!_
