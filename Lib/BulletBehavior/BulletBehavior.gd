@@ -4,7 +4,7 @@
 tool
 extends Node
 
-class_name User_BulletBehavior2D, "./BulletBehavior.png"
+class_name User_BulletBehavior2D
  
 """
 	The Bullet behavior simply moves parent object forwards at

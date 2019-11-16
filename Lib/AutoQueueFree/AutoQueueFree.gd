@@ -3,7 +3,7 @@
 
 extends Node
 
-class_name User_AutoQueueFree, "./AutoQueueFree.png"
+class_name User_AutoQueueFree
 
 """
 	This node automatically take action when activated

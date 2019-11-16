@@ -3,10 +3,13 @@
 [ext_resource path="res://ExampleUsage/UsingShakeBehavior2D/UsingShakeBehavior2D.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Lib/ShakeBehavior/ShakeBehavior.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Lib/ShakeBehavior/ShakeBehavior.png" type="Texture" id=4]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 1, Vector2( 1, 1 ), 0.0, 0.0, 1, 0 ]
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/ShakeBehavior.png-54dfa5375974cf069145e6809a490b46.stex"
 
 [node name="UsingShakeBehavior" type="Node2D"]
 script = ExtResource( 1 )
@@ -49,7 +52,7 @@ margin_top = 231.565
 margin_right = 207.339
 margin_bottom = 261.565
 text = "SHAKE! (decay)"
-icon = ExtResource( 4 )
+icon = SubResource( 2 )
 
 [node name="ShakeINFButton" type="Button" parent="."]
 margin_left = 95.0846
@@ -57,7 +60,7 @@ margin_top = 473.594
 margin_right = 242.085
 margin_bottom = 503.594
 text = "SHAKE indefinitely"
-icon = ExtResource( 4 )
+icon = SubResource( 2 )
 
 [node name="ShakeConstant" type="Button" parent="."]
 margin_left = 549.845
@@ -65,10 +68,9 @@ margin_top = 225.486
 margin_right = 720.845
 margin_bottom = 255.486
 text = "SHAKE! (constant rate)"
-icon = ExtResource( 4 )
+icon = SubResource( 2 )
 
 [node name="ShakeCanvasBtn" type="Button" parent="."]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -78,15 +80,18 @@ margin_top = 469.409
 margin_right = 717.64
 margin_bottom = 499.409
 text = "Shake entire canvas"
-icon = ExtResource( 4 )
+icon = SubResource( 2 )
 
 [node name="TextureRect" type="TextureRect" parent="ShakeCanvasBtn"]
 margin_left = 25.5063
 margin_top = -133.476
 margin_right = 124.506
 margin_bottom = -34.476
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -4,7 +4,7 @@
 
 extends Node
 
-class_name User_SineBehavior2D, "./SineBehavior.png"
+class_name User_SineBehavior2D
 
 """
 	The Sine behavior can adjust an object's properties 

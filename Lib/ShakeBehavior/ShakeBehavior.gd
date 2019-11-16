@@ -4,7 +4,7 @@
 tool #For configure warnings
 extends Node
 
-class_name User_ShakeBehavior2D, "./ShakeBehavior.png"
+class_name User_ShakeBehavior2D
 
 """
 	A behavior node that simulates both Node2D and Control node

@@ -4,7 +4,7 @@
 tool #Used for configuration warnings.
 extends Node
 
-class_name User_PlatformBehavior2D, "./PlatformBehavior.png"
+class_name User_PlatformBehavior2D
 
 """
 	The Platform behavior applies the root node of

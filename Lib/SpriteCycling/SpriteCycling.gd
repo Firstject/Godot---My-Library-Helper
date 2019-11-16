@@ -3,7 +3,7 @@
 
 extends Node
 
-class_name User_SpriteCycling2D, "./SpriteCycling.png"
+class_name User_SpriteCycling2D
 
 """
 	Sprite Cycling turns all children within the parent node
