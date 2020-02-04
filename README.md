@@ -33,4 +33,6 @@ Located at **/ExampleUsage** folder. Each sub-folders contain scene files and ex
 
 **🔆8DirectionBehavior** - The 8 Direction behavior allows an object to be moved up, down, left, right and on diagonals, controlled by the arrow keys by default. It is often useful for controlling the player in a top-down view game.
 
+**🌫NumberLabel** - NumberLabel is an extended Label node that tween the number value and display it as text. When the value of the number changes, the text smoothly transits its number over time.
+
 _More coming soon!_

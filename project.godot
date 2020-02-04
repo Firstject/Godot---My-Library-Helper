@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Lib/BulletBehavior/BulletBehavior.gd"
 }, {
+"base": "Label",
+"class": "User_NumberLabel",
+"language": "GDScript",
+"path": "res://Lib/NumberLabel/NumberLabel.gd"
+}, {
 "base": "Node",
 "class": "User_PlatformBehavior2D",
 "language": "GDScript",
@@ -54,6 +59,7 @@ _global_script_class_icons={
 "RandomNodeSelector": "",
 "User_AutoQueueFree": "",
 "User_BulletBehavior2D": "",
+"User_NumberLabel": "",
 "User_PlatformBehavior2D": "",
 "User_ShakeBehavior2D": "",
 "User_SineBehavior2D": "",
